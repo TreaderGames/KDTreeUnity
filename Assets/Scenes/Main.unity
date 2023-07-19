@@ -398,17 +398,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2118241818 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2118241818, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
-  m_PrefabInstance: {fileID: 3497679263664417756}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3411dd3600c4704ca0f77c701900147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1081295644067411309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -416,18 +405,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
-      propertyPath: padding.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
-      propertyPath: padding.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
-      propertyPath: gridTilesBuilder
-      value: 
-      objectReference: {fileID: 2118241818}
     - target: {fileID: 1081295644183395256, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
       propertyPath: m_Name
       value: GridInitializer
@@ -485,14 +462,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2118241818, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
-      propertyPath: gridHeight
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118241818, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
-      propertyPath: gridLength
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3497679263713333608, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
       propertyPath: m_RootOrder
       value: 4

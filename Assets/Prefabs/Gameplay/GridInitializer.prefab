@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d3c4baba38cb648804b4aa9789c295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTilesBuilder: {fileID: 0}
+  padding: {x: 1, y: 0, z: 1}

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GridInitializer : MonoBehaviour
 {
-    [SerializeField] GridTilesBuilder gridTilesBuilder;
     [SerializeField] Vector3 padding;
 
     #region Unity
+
     private void OnEnable()
     {
         EventController.StartListening(EventID.EVENT_FLOOR_READY, HandleFloorReady);
@@ -28,7 +28,7 @@ public class GridInitializer : MonoBehaviour
         positionOffset += padding;
 
         Debug.Log("Grid position offset: " + positionOffset);
-        gridTilesBuilder.InitTiles(positionOffset);
+        GridTilesBuilder.Instance.InitTiles(positionOffset);
     }
     #endregion
 }
