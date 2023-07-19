@@ -17,6 +17,9 @@ public class Floor : MonoBehaviour
     {
         CameraBoundsResizePlane cameraBoundsResizePlane = new CameraBoundsResizePlane();
         transform.localScale = cameraBoundsResizePlane.GetPlaneScale(transform.position);
+
+        EventController.TriggerEvent(EventID.EVENT_FLOOR_READY, transform);
+        Debug.Log("extents : " + transform.GetComponent<MeshFilter>().sharedMesh.bounds.extents);
     }
     #endregion
 }
