@@ -3,6 +3,7 @@ using UnityEngine;
 public class GridInitializer : MonoBehaviour
 {
     [SerializeField] GridTilesBuilder gridTilesBuilder;
+    [SerializeField] Vector3 padding;
 
     #region Unity
     private void OnEnable()
@@ -24,6 +25,7 @@ public class GridInitializer : MonoBehaviour
         Transform floor = (Transform)arg;
         Bounds floorBounds = floor.GetComponent<MeshFilter>().sharedMesh.bounds;
         Vector3 positionOffset = new Vector3(-floorBounds.extents.x * floor.localScale.x, 0, -floorBounds.extents.z * floor.localScale.z);
+        positionOffset += padding;
 
         Debug.Log("Grid position offset: " + positionOffset);
         gridTilesBuilder.InitTiles(positionOffset);

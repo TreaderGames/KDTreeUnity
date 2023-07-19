@@ -417,6 +417,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
+      propertyPath: padding.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
+      propertyPath: padding.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426430167, guid: 31b69de781898ec4488325ed177aeed6, type: 3}
       propertyPath: gridTilesBuilder
       value: 
       objectReference: {fileID: 2118241818}
@@ -477,6 +485,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2118241818, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
+      propertyPath: gridHeight
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118241818, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
+      propertyPath: gridLength
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3497679263713333608, guid: 3d084ff60942c874ea291c1c570ea4bd, type: 3}
       propertyPath: m_RootOrder
       value: 4
