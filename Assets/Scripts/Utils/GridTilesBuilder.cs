@@ -7,7 +7,7 @@ public class GridTilesBuilder : Singleton<GridTilesBuilder>
 {
     [SerializeField] GameObject tileTemplate;
     private Vector2 positionOffset;
-    [SerializeField] int gridHeight, gridLength;
+    int gridHeight, gridLength;
 
     private Dictionary<int, Vector3> gridPositionCollection = new Dictionary<int, Vector3>();
 
@@ -52,10 +52,14 @@ public class GridTilesBuilder : Singleton<GridTilesBuilder>
     #endregion
 
     #region Public
-    public void InitTiles(Vector3 offset)
+    public void InitTiles(Vector3 offset, Vector2 gridSize)
     {
         positionOffset.x = offset.x;
         positionOffset.y = offset.z;
+
+        gridLength = (int)gridSize.x;
+        gridHeight = (int)gridSize.y;
+
         SetupTiles();
     }
     public int GetTilesCount()

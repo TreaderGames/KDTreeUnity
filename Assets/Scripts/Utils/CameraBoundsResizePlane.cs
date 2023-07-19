@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CameraBoundsResizePlane
 {
-    private const int PLANE_MESH_SIZE = 10; //This will never change unless you replace unitys default plane with another one
 
     Camera mainCamera;
 
@@ -27,7 +26,7 @@ public class CameraBoundsResizePlane
         Vector3 scale = topRight - bottomLeft;
         scale.y = 1;
 
-        return new Vector3(scale.x, scale.y, scale.z) / PLANE_MESH_SIZE;
+        return new Vector3(scale.x, scale.y, scale.z) / StaticVariables.PLANE_MESH_SIZE;
     }
 
     #endregion
