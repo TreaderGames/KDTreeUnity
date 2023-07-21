@@ -33,6 +33,7 @@ public class GridInitializer : MonoBehaviour
 
         Debug.Log("Grid position offset: " + positionOffset);
         GridTilesBuilder.Instance.InitTiles(positionOffset, gridSize);
+        EventController.TriggerEvent(EventID.EVENT_GRID_READY);
     }
     #endregion
 }
