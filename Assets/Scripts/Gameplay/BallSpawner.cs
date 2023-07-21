@@ -1,14 +1,21 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject blueBallTemplate;
+    [SerializeField] GameObject targetBallTemplate;
+    [SerializeField] int targetBallCount;
 
     [SerializeField] GameObject whiteBallTemplate;
     [Range(0,99)] [SerializeField] int whitePercentage;
+    [SerializeField] Vector3 sphereOffset;
 
-    int blueBallCount, whiteBallCount;
+    int whiteBallCount;
+    int maxRange;
+    int totalCount;
+
+    List<int> avilableIndex = new List<int>();
 
     #region Unity
     private void OnEnable()
@@ -26,11 +33,49 @@ public class BallSpawner : MonoBehaviour
     #region Private
     private void UpdateCount()
     {
-        int totalCount = GridTilesBuilder.Instance.GetTilesCount();
+        totalCount = GridTilesBuilder.Instance.GetTilesCount();
 
         whiteBallCount = Mathf.FloorToInt((whitePercentage / 100f) * totalCount);
-        blueBallCount = totalCount - whiteBallCount;
-        Debug.Log("WhiteBall Count: " + whiteBallCount + " BlueBall Count: " + blueBallCount);
+        if((targetBallCount + whiteBallCount) > totalCount)
+        {
+            Debug.LogError("Too many target balls");
+        }
+
+        maxRange = (totalCount);
+        Debug.Log("WhiteBall Count: " + whiteBallCount + " BlueBall Count: " + targetBallCount);
+    }
+
+    private void ResetAvilableList()
+    {
+        for (int i = 0; i < totalCount; i++)
+        {
+            avilableIndex.Add(i);
+        }
+    }
+
+    private void SpawnSpheres(bool isWhite)
+    {
+        int randomIndex;
+        int index;
+        int count = isWhite ? whiteBallCount : targetBallCount;
+
+        for (int i = 1; i <= count; i++)
+        {
+            randomIndex = UnityEngine.Random.Range(1, maxRange);
+            index = avilableIndex[randomIndex];
+            avilableIndex.RemoveAt(randomIndex);
+
+            SpawnAt(isWhite, GridTilesBuilder.Instance.GetPositionForTile(index));
+            maxRange--;
+        }
+    }
+
+    private void SpawnAt(bool isWhite, Vector3 position)
+    {
+        GameObject currentSphere;
+        GameObject template = isWhite ? whiteBallTemplate : targetBallTemplate;
+        currentSphere = Instantiate(template, transform);
+        currentSphere.transform.localPosition = position + sphereOffset;
     }
     #endregion
 
@@ -38,6 +83,9 @@ public class BallSpawner : MonoBehaviour
     private void HandleGridReady(object arg)
     {
         UpdateCount();
+        ResetAvilableList();
+        SpawnSpheres(true);
+        SpawnSpheres(false);
     }
     #endregion
 }

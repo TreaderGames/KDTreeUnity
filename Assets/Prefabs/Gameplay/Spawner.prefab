@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911fe5a8571fd684f9cf87f8fffc6644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueBallTemplate: {fileID: 9074819858057118351, guid: aa3be8ca1bae5894096dfc0714b893c3, type: 3}
+  targetBallTemplate: {fileID: 9074819858057118351, guid: aa3be8ca1bae5894096dfc0714b893c3, type: 3}
+  targetBallCount: 2
   whiteBallTemplate: {fileID: 7690299550411693997, guid: 5f67e63e84a56344087812c629cb8c71, type: 3}
-  whitePercentage: 50
+  whitePercentage: 32
+  sphereOffset: {x: 0, y: 0.5, z: 0}
