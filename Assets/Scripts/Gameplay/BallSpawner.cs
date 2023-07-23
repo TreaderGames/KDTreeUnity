@@ -16,6 +16,7 @@ public class BallSpawner : MonoBehaviour
     int totalCount;
 
     List<int> avilableIndex = new List<int>();
+    List<System.Numerics.Vector3> whiteBallPoints = new List<System.Numerics.Vector3>();
 
     #region Unity
     private void OnEnable()
@@ -58,6 +59,10 @@ public class BallSpawner : MonoBehaviour
         int randomIndex;
         int index;
         int count = isWhite ? whiteBallCount : targetBallCount;
+        if (isWhite)
+        {
+            whiteBallPoints.Clear();
+        }
 
         for (int i = 1; i <= count; i++)
         {
@@ -76,6 +81,11 @@ public class BallSpawner : MonoBehaviour
         GameObject template = isWhite ? whiteBallTemplate : targetBallTemplate;
         currentSphere = Instantiate(template, transform);
         currentSphere.transform.localPosition = position + sphereOffset;
+
+        if(isWhite)
+        {
+            whiteBallPoints.Add(Utilities.ParseUnityToNumericsVector(currentSphere.transform.localPosition));
+        }
     }
     #endregion
 
@@ -86,6 +96,8 @@ public class BallSpawner : MonoBehaviour
         ResetAvilableList();
         SpawnSpheres(true);
         SpawnSpheres(false);
+
+        EventController.TriggerEvent(EventID.EVENT_SPAWN_DONE, whiteBallPoints);
     }
     #endregion
 }
