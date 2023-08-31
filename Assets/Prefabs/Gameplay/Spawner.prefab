@@ -47,5 +47,5 @@ MonoBehaviour:
   targetBallTemplate: {fileID: 9074819858057118351, guid: aa3be8ca1bae5894096dfc0714b893c3, type: 3}
   targetBallCount: 2
   whiteBallTemplate: {fileID: 7690299550411693997, guid: 5f67e63e84a56344087812c629cb8c71, type: 3}
-  whitePercentage: 32
+  whitePercentage: 23
   sphereOffset: {x: 0, y: 0.5, z: 0}

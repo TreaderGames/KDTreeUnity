@@ -6,10 +6,13 @@ using UnityEngine;
 public class GridTilesBuilder : Singleton<GridTilesBuilder>
 {
     [SerializeField] GameObject tileTemplate;
+    [SerializeField] float objectScale;
     private Vector2 positionOffset;
     int gridHeight, gridLength;
 
     private Dictionary<int, Vector3> gridPositionCollection = new Dictionary<int, Vector3>();
+
+    public float pObjectScale { get => objectScale; }
 
     #region Unity
     // Start is called before the first frame update
@@ -38,8 +41,8 @@ public class GridTilesBuilder : Singleton<GridTilesBuilder>
     private void SetupTile(int row, int column, int count)
     {
         Vector3 position = Vector3.zero;
-        position.x = row + positionOffset.x;
-        position.z = column + positionOffset.y;
+        position.x = row * objectScale + positionOffset.x;
+        position.z = column * objectScale + positionOffset.y;
         gridPositionCollection.Add(count, position);
 
 #if DEBUG_DEFINE

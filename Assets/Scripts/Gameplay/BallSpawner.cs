@@ -18,6 +18,7 @@ public class BallSpawner : MonoBehaviour
     List<int> avilableIndex = new List<int>();
     List<System.Numerics.Vector3> whiteBallPoints = new List<System.Numerics.Vector3>();
 
+
     #region Unity
     private void OnEnable()
     {
@@ -81,6 +82,7 @@ public class BallSpawner : MonoBehaviour
         GameObject template = isWhite ? whiteBallTemplate : targetBallTemplate;
         currentSphere = Instantiate(template, transform);
         currentSphere.transform.localPosition = position + sphereOffset;
+        currentSphere.transform.localScale = currentSphere.transform.localScale * GridTilesBuilder.Instance.pObjectScale;
 
         if(isWhite)
         {

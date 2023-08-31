@@ -3,6 +3,7 @@ using UnityEngine;
 public class GridInitializer : MonoBehaviour
 {
     [SerializeField] Vector3 padding;
+
     Vector2 gridSize;
 
     #region Unity
@@ -27,7 +28,10 @@ public class GridInitializer : MonoBehaviour
         Bounds floorBounds = floor.GetComponent<MeshFilter>().sharedMesh.bounds;
 
         Vector3 positionOffset = new Vector3(-floorBounds.extents.x * floor.localScale.x, 0, -floorBounds.extents.z * floor.localScale.z);
-        Vector2 gridSize = new Vector2(floor.localScale.x * StaticVariables.PLANE_MESH_SIZE - padding.x, floor.localScale.z * StaticVariables.PLANE_MESH_SIZE - padding.z);
+        Vector2 gridSize = new Vector2(((floor.localScale.x / GridTilesBuilder.Instance.pObjectScale) * StaticVariables.PLANE_MESH_SIZE) - (padding.x / GridTilesBuilder.Instance.pObjectScale) * 2, ((floor.localScale.z / GridTilesBuilder.Instance.pObjectScale) * StaticVariables.PLANE_MESH_SIZE) - (padding.z / GridTilesBuilder.Instance.pObjectScale) * 2);
+        //Vector2 gridSize = new Vector2(((floor.localScale.x / GridTilesBuilder.Instance.pObjectScale) * StaticVariables.PLANE_MESH_SIZE), ((floor.localScale.z / GridTilesBuilder.Instance.pObjectScale) * StaticVariables.PLANE_MESH_SIZE));-
+
+        Debug.Log("z :" + (padding.z / GridTilesBuilder.Instance.pObjectScale));
 
         positionOffset += padding;
 

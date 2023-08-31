@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileTemplate: {fileID: 7318701350298934543, guid: b0c501a6984b33b4194a4c986afa0a94, type: 3}
-  gridHeight: 11
-  gridLength: 6
+  objectScale: 0.2
 --- !u!1 &3497679263713333614
 GameObject:
   m_ObjectHideFlags: 0
