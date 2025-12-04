@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5497730062160327599}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -32.583138, y: -55.447945, z: 16.283495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1470461706060806152
 MonoBehaviour:
@@ -47,5 +47,5 @@ MonoBehaviour:
   targetBallTemplate: {fileID: 9074819858057118351, guid: aa3be8ca1bae5894096dfc0714b893c3, type: 3}
   targetBallCount: 2
   whiteBallTemplate: {fileID: 7690299550411693997, guid: 5f67e63e84a56344087812c629cb8c71, type: 3}
-  whitePercentage: 23
+  whitePercentage: 99
   sphereOffset: {x: 0, y: 0.5, z: 0}

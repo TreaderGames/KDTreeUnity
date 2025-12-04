@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Numerics;
+using System;
 
 public class NeighbourFinder : MonoBehaviour
 {
@@ -62,7 +61,7 @@ public class NeighbourFinder : MonoBehaviour
             }
         }
 
-        whiteBallCollection[closestVector].material = nearestSphereMat;
+       whiteBallCollection[closestVector].material = nearestSphereMat;
     }
 
     #endregion
@@ -78,25 +77,32 @@ public class NeighbourFinder : MonoBehaviour
         System.Numerics.Vector3[] whiteBallVectors = PointArrFromCollection(whiteBallCollection);
         System.Numerics.Vector3 currentPos = new System.Numerics.Vector3(currentPosition.x, currentPosition.y, currentPosition.z);
 
-        if (useKD)
+        KdTree kdTree = new KdTree(3, whiteBallVectors);
+
+        float[] vectorFloatArr = new float[3];
+        vectorFloatArr[0] = currentPosition.x;
+        vectorFloatArr[1] = currentPosition.y;
+        vectorFloatArr[2] = currentPosition.z;
+
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+        for (int i = 0; i < 1000; i++)
         {
-            KdTree kdTree = new KdTree(3, whiteBallVectors);
+            if (useKD)
+            {
+                float[] nearestPoint = kdTree.Search(null, vectorFloatArr).point;
+                UnityEngine.Vector3 nearestPointVector = new UnityEngine.Vector3(nearestPoint[0], nearestPoint[1], nearestPoint[2]);
+                whiteBallCollection[new System.Numerics.Vector3(nearestPointVector.x, nearestPointVector.y, nearestPointVector.z)].material = nearestSphereMat;
 
-            float[] vectorFloatArr = new float[3];
-            vectorFloatArr[0] = currentPosition.x;
-            vectorFloatArr[1] = currentPosition.y;
-            vectorFloatArr[2] = currentPosition.z;
-
-            float[] nearestPoint = kdTree.Search(null, vectorFloatArr).point;
-            UnityEngine.Vector3 nearestPointVector = new UnityEngine.Vector3(nearestPoint[0], nearestPoint[1], nearestPoint[2]);
-            whiteBallCollection[new System.Numerics.Vector3(nearestPointVector.x, nearestPointVector.y, nearestPointVector.z)].material = nearestSphereMat;
-
-            Debug.Log("Curr pos: " + currentPosition + " nearest Pos: " + nearestPointVector);
+                //UnityEngine.Debug.Log("Curr pos: " + currentPosition + " nearest Pos: " + nearestPointVector);
+            }
+            else
+            {
+                BruteForceFind(whiteBallVectors, currentPos);
+            }
         }
-        else
-        {
-            BruteForceFind(whiteBallVectors, currentPos);
-        }
+        stopwatch.Stop();
+        UnityEngine.Debug.Log("Time Spent: " + stopwatch.ElapsedMilliseconds);
     }
     #endregion
 }
