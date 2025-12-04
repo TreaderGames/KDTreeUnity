@@ -484,7 +484,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1470461706060806152, guid: aa5d7ca88f9f11844b620b55871e2ef8, type: 3}
       propertyPath: targetBallCount
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1470461706060806152, guid: aa5d7ca88f9f11844b620b55871e2ef8, type: 3}
       propertyPath: whitePercentage

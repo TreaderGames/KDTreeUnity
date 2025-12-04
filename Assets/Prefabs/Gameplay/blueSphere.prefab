@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearestSphereMat: {fileID: 2100000, guid: 056bd82fb17da99439a83f14a42289c6, type: 2}
-  useKD: 0
+  useKD: 1

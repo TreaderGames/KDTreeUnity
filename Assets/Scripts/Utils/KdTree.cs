@@ -21,11 +21,6 @@ public class KdTree
 {
 	private int k;
 	Node root = null;
-	Node lastNode = null;
-	Node unPickedNode = null;
-
-	float? currentDistance = null;
-	float? prevDistance = null;
 
 	// Defining a constructor to initialize the KdTree object
 	public KdTree(int k)
@@ -81,20 +76,6 @@ public class KdTree
 
 	#region Private
 
-	// Defining a method to check if two points are the same
-	private bool ArePointsSame(float[] point1, float[] point2)
-	{
-		for (int i = 0; i < k; i++)
-		{
-			if (point1[i] != point2[i])
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 	private float GetDistance(float[] point1, float[] point2)
     {
 		Vector3 vectorPoint1 = ParseFloatArrToVector(point1);
@@ -102,58 +83,6 @@ public class KdTree
 
 		return Vector3.Distance(vectorPoint1, vectorPoint2);
     }
-
-	// Defining a recursive method to search for a point in the K-d tree
-	private Node SearchRec(Node root, float[] point, int depth)
-	{
-		if (root == null)
-		{
-			return EvaluateFinal(point);
-		}
-
-		currentDistance = GetDistance(root.point, point);
-		if(prevDistance == null || prevDistance > currentDistance)
-        {
-			prevDistance = currentDistance;
-			lastNode = root;
-        }
-		UnityEngine.Debug.Log("Prev dis: " + prevDistance + " currDist: " + currentDistance);
-		//if (ArePointsSame(root.point, point))
-		//{
-		//	return true;
-		//}
-
-		int cd = depth % k;
-
-		UnityEngine.Debug.LogError("cd: " + cd + " depth: " + depth + " k: " + k);
-
-		if (point[cd] < root.point[cd])
-		{
-			if (root.right != null)
-			{
-				unPickedNode = root.right;
-			}
-			return SearchRec(root.left, point, depth + 1);
-		}
-
-		if (root.left != null)
-		{
-			unPickedNode = root.left;
-		}
-		return SearchRec(root.right, point, depth + 1);
-	}
-
-	private Node EvaluateFinal(float[] point)
-    {
-		currentDistance = GetDistance(unPickedNode.point, point);
-		if (prevDistance == null || prevDistance > currentDistance)
-		{
-			prevDistance = currentDistance;
-			lastNode = unPickedNode;
-		}
-
-		return lastNode;
-	}
 
 	private List<float[]> ParseVectorArrayToPoint(Vector3[] vectorArray)
     {
@@ -208,24 +137,24 @@ public class KdTree
 		if (node == null)
 			return best;
 
-		// 1. Update best with current node
-		float d = GetDistance(node.point, target);
-		if (d < bestDist)
+		//Update best with current node
+		float dist = GetDistance(node.point, target);
+		if (dist < bestDist)
 		{
-			bestDist = d;
+			bestDist = dist;
 			best = node;
 		}
 
 		int axis = depth % k;
 
-		// 2. Choose which side to search first
+		//Choose which side to search first
 		Node next = (target[axis] < node.point[axis]) ? node.left : node.right;
 		Node other = (next == node.left) ? node.right : node.left;
 
-		// 3. Recurse into the "closer" side first
+		//Recurse into the "closer" side first
 		best = NearestRec(next, target, depth + 1, best, ref bestDist);
 
-		// 4. Decide if we need to check the "other" side
+		//Decide if we need to check the "other" side
 		float diff = target[axis] - node.point[axis];
 		// If the distance along this axis is smaller than the best distance so far,
 		// the hypersphere around the target intersects the splitting plane.
